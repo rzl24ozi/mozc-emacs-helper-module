@@ -8,9 +8,9 @@ Windows10 Pro (mingwおよびcygwin)、Linux (Ubuntu)、FreeBSD (いずれも64b
 
 ### mozc-emacs-helper-moduleのビルド
 
-* https://github.com/google/mozc/blob/master/README.mdのBuild Instructionsなど参照してmozcをビルドできる環境とmozcソースを準備してください。
+* https://github.com/google/mozc/blob/master/README.md のBuild Instructionsなど参照してmozcをビルドできる環境とmozcソースを準備してください。
 
-FreeBSDではportsでビルドできます。/usr/ports/japanese/mozc-server/下でmake extractすると/usr/ports/japanese/mozc-server/work/mozc-*/下にソースが展開されます。
+  FreeBSDではportsでビルドできます。/usr/ports/japanese/mozc-server/下でmake extractすると/usr/ports/japanese/mozc-server/work/mozc-*/下にソースが展開されます。
 
 * mozcソースsrc/unix/emacs/下に
 
@@ -18,7 +18,7 @@ FreeBSDではportsでビルドできます。/usr/ports/japanese/mozc-server/下
     mozc-emacs-helper-module.def  
     emacs-module.h  
 
-をコピーしてください。emacs-module.hはemacsソースのsrc/下にあるものです。
+  をコピーしてください。emacs-module.hはemacsソースのsrc/下にあるものです。
 mozc-emacs-helper-module.defはWindows以外では不要ですがあっても使われないだけなので気にしないでください。
 
 * mozcソースsrc/unix/emacs/emacs.gypをemacs.gyp.diffのように修正してください。
@@ -54,7 +54,7 @@ libmozc-emacs-helper-module.soをmozc-emacs-helper-module.soにリネームし�
 
 * Windows で --branding=GoogleJapaneseInput でビルドした場合はGoogle日本語入力をインストールしておいてください。それ以外は(ビルドした)mozcをインストールしておいてください。
 
-Linux (Ubuntu)でパッケージのmozc\_serverとのバージョン違いで動かないことがありました。mozc\_serverだけとりあえずビルドしたものに入れ替えると動きました。パッケージと同じバージョンのソースを取得してそれでビルドすればパッケージのmozc\_serverで使えるものができるかと思いますが未確認です。
+  Linux (Ubuntu)でパッケージのmozc\_serverとのバージョン違いで動かないことがありました。mozc\_serverだけとりあえずビルドしたものに入れ替えると動きました。パッケージと同じバージョンのソースを取得してそれでビルドすればパッケージのmozc\_serverで使えるものができるかと思いますが未確認です。
 
 * 以下の内容のファイルを作成し
 
@@ -67,7 +67,7 @@ Linux (Ubuntu)でパッケージのmozc\_serverとのバージョン違いで動
     (message "%S" (mozc-emacs-helper-module-send-sexpr 0 'CreateSession))
     (message "%S" (mozc-emacs-helper-module-send-sexpr 1 'SendKey 1 97))
 
-[NTEmacs＠ウィキ](https://www49.atwiki.jp/ntemacs/) の [emacs-mozc を動かすための設定（mozc\_emacs\_helper コンパイル編）](https://www49.atwiki.jp/ntemacs/pages/50.html) にあるmozc\_emacs\_helper.exe動作確認の結果と同様な表示が\*Message\*バッファに出力されることを確認してください。
+  [NTEmacs＠ウィキ](https://www49.atwiki.jp/ntemacs/) の [emacs-mozc を動かすための設定（mozc\_emacs\_helper コンパイル編）](https://www49.atwiki.jp/ntemacs/pages/50.html) にあるmozc\_emacs\_helper.exe動作確認の結果と同様な表示が\*Message\*バッファに出力されることを確認してください。
 
 ### インストール
 
@@ -77,16 +77,15 @@ Linux (Ubuntu)でパッケージのmozc\_serverとのバージョン違いで動
 
 * init.el に (require 'mozc-emacs-helper) とmozcの設定を記述してください。
 
-mozcの設定はmozc-helperプロセス関連を除き通常と変わりありません。
-既にmozc\_emacs\_helperでmozcを使用しているならinit.elへの(require 'mozc-emacs-helper)の追加だけで使えるかと思いますが、
-使用しているパッケージにmozc-helperプロセス関連を利用するようなものがもしあれば問題が生じるかもしれません。
+  mozcの設定はmozc-helperプロセス関連を除き通常と変わりありません。
+  既にmozc\_emacs\_helperでmozcを使用しているならinit.elへの(require 'mozc-emacs-helper)の追加だけで使えるかと思いますが、使用しているパッケージにmozc-helperプロセス関連を利用するようなものがもしあれば問題が生じるかもしれません。
 
 ## Windows版補足
 
 * Windows版で NTEmacs＠ウィキの[emacs-mozc を動かすための設定（emacs 設定編）](https://www49.atwiki.jp/ntemacs/pages/48.html) にある、セッション接続直後directモードになることへの対処(mozc-session-execute-commandへのadvice)は設定不要です。
 mozc-emacs-helper-module.dll内部でCreateSession後IME ONのキーを送っています。
 
-(参考までに、mozc\_emacs\_heler.cc.diffは同様にCreateSession後IME ONのキーを送るようにmozc\_emacs\_helperを修正するパッチです)
+  (参考までに、mozc\_emacs\_heler.cc.diffは同様にCreateSession後IME ONのキーを送るようにmozc\_emacs\_helperを修正するパッチです)
 
 
 * Windowsの場合mozc-emacs-helper-module.cc先頭でコメントアウトしてある#define disableImeのコメントアウトを外してビルドすると、mozc-emacs-helper-module.dllのロード時にImmDisableIME(-1)が呼び出され、呼び出しプロセスすなわちemacs本体のIMEが無効化されます。この場合
@@ -94,16 +93,16 @@ mozc-emacs-helper-module.dll内部でCreateSession後IME ONのキーを送って
     (global-set-key [auto] 'toggle-input-method)  
     (global-set-key [enlw] 'toggle-input-method)
 
-で 半角/全角キー にmozcのON/OFFを割り当てたりできるようになります。
+  で 半角/全角キー にmozcのON/OFFを割り当てたりできるようになります。
 
-ただしMSDNのImmDisableIMEの説明(ネット検索すると最初の方に出てきます)からするとImmDisableIME呼び出しがロード時に行われるのはまずそうな気がします。利用は自己責任でお願いします。
+  ただしMSDNのImmDisableIMEの説明(ネット検索すると最初の方に出てきます)からするとImmDisableIME呼び出しがロード時に行われるのはまずそうな気がします。利用は自己責任でお願いします。
 
-gccが使える環境であればemacs-module.hをdisableIme.cと同じところに置いて
+  gccが使える環境であればemacs-module.hをdisableIme.cと同じところに置いて
 
     $ gcc -shared -o disableIme.dll disableIme.c -limm32
 
-でdisableIme.dllを作り、これをロードして大丈夫そうか確認してみてもいいかもしれません。
+  でdisableIme.dllを作り、これをロードして大丈夫そうか確認してみてもいいかもしれません。
 
-disableIme.dllはImmDisableIME(-1)を呼び出して (provide 'disableIme) するだけのモジュールです。
+  disableIme.dllはImmDisableIME(-1)を呼び出して (provide 'disableIme) するだけのモジュールです。
 
 以上
