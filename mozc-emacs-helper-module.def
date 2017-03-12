@@ -1,0 +1,3 @@
+EXPORTS
+ plugin_is_GPL_compatible DATA
+ emacs_module_init

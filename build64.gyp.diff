@@ -1,0 +1,10 @@
+--- ./src/win32/build64/build64.gyp.orig	2017-03-11 08:39:47.096259500 +0900
++++ ./src/win32/build64/build64.gyp	2017-03-11 08:42:22.098672500 +0900
+@@ -46,6 +46,7 @@
+             '../broker/broker.gyp:mozc_broker64',
+             '../ime/ime.gyp:mozc_ime',
+             '../tip/tip.gyp:mozc_tip64',
++            '../../unix/emacs/emacs.gyp:mozc-emacs-helper-module',
+           ],
+           'conditions': [
+             ['branding=="GoogleJapaneseInput"', {

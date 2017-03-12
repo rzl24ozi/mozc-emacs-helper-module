@@ -1,0 +1,21 @@
+--- ./src/unix/emacs/mozc_emacs_helper.cc.orig	2017-03-11 08:39:46.877238200 +0900
++++ ./src/unix/emacs/mozc_emacs_helper.cc	2017-03-11 08:43:11.794197700 +0900
+@@ -92,6 +92,18 @@
+     switch (command.input().type()) {
+       case mozc::commands::Input::CREATE_SESSION:
+         session_id = client_pool.CreateClient();
++#ifdef OS_WIN
++        {
++          std::shared_ptr<mozc::client::Client> client =
++            client_pool.GetClient(session_id);
++          CHECK(client.get());
++          mozc::commands::KeyEvent key;
++          key.set_special_key(mozc::commands::KeyEvent::ON);
++          if (!client->SendKey(key, command.mutable_output())) {
++            ErrorExit(mozc::emacs::kErrSessionError, "Send IME-On key failed");
++          }
++        }
++#endif // OS_WIN
+         break;
+       case mozc::commands::Input::DELETE_SESSION:
+         client_pool.DeleteClient(session_id);
