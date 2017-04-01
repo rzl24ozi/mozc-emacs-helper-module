@@ -15,11 +15,10 @@ Windows10 Pro (mingwおよびcygwin)、Linux (Ubuntu)、FreeBSD (いずれも64b
 * mozcソースsrc/unix/emacs/下に
 
     mozc-emacs-helper-module.cc  
-    mozc-emacs-helper-module.def  
     emacs-module.h  
 
   をコピーしてください。emacs-module.hはemacsソースのsrc/下にあるものです。
-mozc-emacs-helper-module.defはWindows以外では不要ですがあっても使われないだけなので気にしないでください。
+
 
 * mozcソースsrc/unix/emacs/emacs.gypをemacs.gyp.diffのように修正してください。
 
@@ -60,12 +59,13 @@ libmozc-emacs-helper-module.soをmozc-emacs-helper-module.soにリネームし�
 
     $ emacs -Q -l 作成したファイル名
 
-としてemacsに読み込ませてください。emacsはdynamic module機能を有効にしてビルドされている必要があります。
+    としてemacsに読み込ませてください。emacsはdynamic module機能を有効にしてビルドされている必要があります。
 
-    (module-load "mozc-emacs-helper-moduleファイル名(フルパス)")
-    (message "%S" (mozc-emacs-helper-module-recv-greeting))
-    (message "%S" (mozc-emacs-helper-module-send-sexpr 0 'CreateSession))
-    (message "%S" (mozc-emacs-helper-module-send-sexpr 1 'SendKey 1 97))
+
+        (module-load "mozc-emacs-helper-moduleファイル名(フルパス)")
+        (message "%S" (mozc-emacs-helper-module-recv-greeting))
+        (message "%S" (mozc-emacs-helper-module-send-sexpr 0 'CreateSession))
+        (message "%S" (mozc-emacs-helper-module-send-sexpr 1 'SendKey 1 97))
 
   [NTEmacs＠ウィキ](https://www49.atwiki.jp/ntemacs/) の [emacs-mozc を動かすための設定（mozc\_emacs\_helper コンパイル編）](https://www49.atwiki.jp/ntemacs/pages/50.html) にあるmozc\_emacs\_helper.exe動作確認の結果と同様な表示が\*Message\*バッファに出力されることを確認してください。
 

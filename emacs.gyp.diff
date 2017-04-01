@@ -1,6 +1,6 @@
---- ./src/unix/emacs/emacs.gyp.orig	2017-03-11 08:39:46.874238900 +0900
-+++ ./src/unix/emacs/emacs.gyp	2017-03-11 08:40:25.359708600 +0900
-@@ -33,6 +33,22 @@
+--- ./src/unix/emacs/emacs.gyp.orig	2017-04-01 18:28:47.595126400 +0900
++++ ./src/unix/emacs/emacs.gyp	2017-04-01 18:31:32.792398000 +0900
+@@ -33,6 +33,21 @@
    },
    'targets': [
      {
@@ -8,7 +8,6 @@
 +      'type': 'shared_library',
 +      'sources': [
 +        'mozc-emacs-helper-module.cc',
-+        'mozc-emacs-helper-module.def',
 +      ],
 +      'dependencies': [
 +        '../../base/base.gyp:base',

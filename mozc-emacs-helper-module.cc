@@ -22,6 +22,14 @@
 #ifdef OS_LINUX
 #include <signal.h>
 #endif // OS_LINUX
+
+#ifdef OS_WIN
+#define DLLEXPORT __declspec(dllexport)
+#else
+#define DLLEXPORT
+#endif
+#define plugin_is_GPL_compatible  DLLEXPORT plugin_is_GPL_compatible
+#define emacs_module_init         DLLEXPORT emacs_module_init
 #include "emacs-module.h"
 
 namespace {
