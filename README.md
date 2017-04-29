@@ -41,7 +41,7 @@ libmozc-emacs-helper-module.soをmozc-emacs-helper-module.soにリネームし�
 
 #### FreeBSD
 
-/usr/ports/japanese/mozc-server/Makefileのdo-build-mozc-server:のアクションに
+/usr/ports/japanese/mozc-server/Makefileのdo-build-mozc\_server:のアクションに
 
         	${BUILD_MOZC_CMD_BULD} unix/emacs/emacs.gyp:mozc-emacs-helper-module
 
