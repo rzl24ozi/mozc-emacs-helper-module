@@ -22,9 +22,11 @@
 #ifndef MOZC_PRId64
 #ifdef _MSC_VER
 #define MOZC_PRId64 "I64d"
+#define MOZC_PRIu64 "I64u"
 #else
 #include <inttypes.h>
 #define MOZC_PRId64 PRId64
+#define MOZC_PRIu64 PRIu64
 #endif
 #endif // MOZC_PRId64
 
@@ -316,12 +318,12 @@ make_lisp_field_value (emacs_env *env,
       break;
     case mozc::protobuf::FieldDescriptor::CPPTYPE_INT64:
       snprintf (buf, BUF_SIZE,
-                     "%" MOZC_PRId64 "d", (long long)GET_FIELD_VALUE(Int64));
+                     "%" MOZC_PRId64, (int64)GET_FIELD_VALUE(Int64));
       output = env->make_string (env, buf, strlen(buf));
       break;
     case mozc::protobuf::FieldDescriptor::CPPTYPE_UINT64:
       snprintf (buf, BUF_SIZE,
-                     "%" MOZC_PRId64 "u", (long long)GET_FIELD_VALUE(UInt64)); 
+                     "%" MOZC_PRIu64, (uint64)GET_FIELD_VALUE(UInt64)); 
       output = env->make_string (env, buf, strlen(buf));
       break;
     case mozc::protobuf::FieldDescriptor::CPPTYPE_DOUBLE:
