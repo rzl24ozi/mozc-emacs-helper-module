@@ -43,7 +43,7 @@ libmozc-emacs-helper-module.soをmozc-emacs-helper-module.soにリネームし�
 
 /usr/ports/japanese/mozc-server/Makefileのdo-build-mozc\_server:のアクションに
 
-        	${BUILD_MOZC_CMD_BULD} unix/emacs/emacs.gyp:mozc-emacs-helper-module
+		${BUILD_MOZC_CMD_BUILD} unix/emacs/emacs.gyp:mozc-emacs-helper-module
 
 を追加(行頭がタブであることに注意)して、/usr/ports/japanese/mozc-server/下で make を実行しビルドしてください。/usr/ports/japanese/mozc-server/work/mozc-*/src/out\_linux/Release/lib/libmozc-emacs-helper-module.soができます。
 
