@@ -19,6 +19,15 @@
 #include "unix/emacs/client_pool.h"
 #include "unix/emacs/mozc_emacs_helper_lib.h"
 
+#ifndef MOZC_PRId64
+#ifdef _MSC_VER
+#define MOZC_PRId64 "I64d"
+#else
+#include <inttypes.h>
+#define MOZC_PRId64 PRId64
+#endif
+#endif // MOZC_PRId64
+
 #ifdef OS_LINUX
 #include <signal.h>
 #endif // OS_LINUX
@@ -307,12 +316,12 @@ make_lisp_field_value (emacs_env *env,
       break;
     case mozc::protobuf::FieldDescriptor::CPPTYPE_INT64:
       snprintf (buf, BUF_SIZE,
-                     "%" GG_LL_FORMAT "d", (long long)GET_FIELD_VALUE(Int64));
+                     "%" MOZC_PRId64 "d", (long long)GET_FIELD_VALUE(Int64));
       output = env->make_string (env, buf, strlen(buf));
       break;
     case mozc::protobuf::FieldDescriptor::CPPTYPE_UINT64:
       snprintf (buf, BUF_SIZE,
-                     "%" GG_LL_FORMAT "u", (long long)GET_FIELD_VALUE(UInt64)); 
+                     "%" MOZC_PRId64 "u", (long long)GET_FIELD_VALUE(UInt64)); 
       output = env->make_string (env, buf, strlen(buf));
       break;
     case mozc::protobuf::FieldDescriptor::CPPTYPE_DOUBLE:
